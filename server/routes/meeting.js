@@ -79,7 +79,7 @@ router.post('/addNewMeeting', async (req, res) => {
 
                                     var mailOption = {
                                         from: 'meetingplanneriiita@gmail.com',
-                                        to: 'sakshamsood00@gmail.com',
+                                        to: participant,
                                         subject: 'Meeting Scheduled',
                                         text: 'A meeting has been scheduled. Please login for details.'
                                     };
