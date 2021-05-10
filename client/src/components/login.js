@@ -103,7 +103,7 @@ const Login = () => {
       <Card className={classes.card}>
         <div className={classes.header}>Login To MeetHere</div>
         <div className={classes.inputContainer}>
-          <TextInput required id="standard-required" value={emailValue} onChange={changeEmailValue} variant="outlined" label="User Name" helperText={err.code === 0 ? err.error : ""}/>    
+          <TextInput required id="standard-required" value={emailValue} onChange={changeEmailValue} variant="outlined" label="Email" helperText={err.code === 0 ? err.error : ""}/>    
         </div> 
         <div className={classes.inputContainer}>
           <TextInput required id="standard-required" value={passwordValue} type="password" onChange={changePasswordValue} variant="outlined" label="Password" helperText={err.code === 1 ? err.error : ""}/>    

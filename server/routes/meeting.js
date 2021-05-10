@@ -1,6 +1,8 @@
 const express = require('express');
 const validator = require('validator');
 const db = require('../database.js');
+var nodemailer = require('nodemailer');
+const {transporter,sendEmail} = require('../email.js')
 
 const router = express.Router();
 
@@ -42,10 +44,29 @@ router.post('/addNewMeeting', async (req, res) => {
                                 await db.query(sqlQuery, [" ", participant, "abcabcabc"],async (err3, insertResult) => {
                                     if(!err3) {
                                         console.log(insertResult.insertId)
+
+                                        var mailOptions = {
+                                            from: 'meetingplanneriiita@gmail.com',
+                                            to: participant,
+                                            subject: 'Registration successful',
+                                            text: 'Your account has been registered. Please login by using your Email and password "abcabcabc".'
+                                        };
+            
+                                        sendEmail(transporter,mailOptions);
+
                                         participant = insertResult.insertId;
                                         sqlQuery = "INSERT INTO usermeets (idMeeting, idUser, title, meetingRoomId, startTime, endTime) VALUES (?,?,?,?,?,?)";
                                         await db.query(sqlQuery, [result.insertId, participant, title, meetingRoomId, startTime, endTime], (error, insertResult) => {
                                             console.log(insertResult);
+
+                                            var mailOption = {
+                                                from: 'meetingplanneriiita@gmail.com',
+                                                to: participant,
+                                                subject: 'Meeting Scheduled',
+                                                text: 'A meeting has been scheduled. Please login for details'
+                                            };
+                
+                                            sendEmail(transporter,mailOption);
                                         })
                                     } 
                                 })
@@ -55,6 +76,15 @@ router.post('/addNewMeeting', async (req, res) => {
                                 sqlQuery = "INSERT INTO usermeets (idMeeting, idUser, title, meetingRoomId, startTime, endTime) VALUES (?,?,?,?,?,?)";
                                 await db.query(sqlQuery, [result.insertId, participant, title, meetingRoomId, startTime, endTime], (error, insertResult) => {
                                     console.log(insertResult);
+
+                                    var mailOption = {
+                                        from: 'meetingplanneriiita@gmail.com',
+                                        to: 'sakshamsood00@gmail.com',
+                                        subject: 'Meeting Scheduled',
+                                        text: 'A meeting has been scheduled. Please login for details.'
+                                    };
+        
+                                    sendEmail(transporter,mailOption);
                                 })
                             }
                         })
