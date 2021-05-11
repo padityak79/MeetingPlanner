@@ -12,4 +12,4 @@
 
 <h5>Note</h5>
 i)  To connect the server side to your system's Mysql database, make sure that the information in the database.js(createPool function) matches with the information of your local machine.</br>
-ii) create the schema's user, meeting and user-meets with the following fields and properties  
+ii) create the schema's user, meeting and user-meets with the fields and properties specified in https://github.com/padityak79/MeetingPlanner/blob/master/Database%20Setup.pdf 
