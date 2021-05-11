@@ -1,5 +1,6 @@
 # MeetingPlanner
 <h4>To run the app running on the local machine :-</h4>
+<h5>Make sure that you have node js installed in your system(Current version preferred).</h5>
 <h5>To start the client side developmental server :- </h5>
   i)   Navigate to the client directory of the project folder<br/>
   ii)  install all the npm_modules of the client directory using <b>npm install</b> or <b>yarn add</b><br/>
