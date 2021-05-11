@@ -2,7 +2,7 @@ import react from "react";
 import {Link} from "react-router-dom";
 import Container from "@material-ui/core/Container";
 import {makeStyles} from "@material-ui/core/styles";
-import img from "../images/DBMS_Screen.jpg";
+import img from "../images/DBMS_Screen.jpeg";
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
 
@@ -12,8 +12,8 @@ const useStyles = makeStyles((theme) => ({
         width  : "100%",
         backgroundImage : `url(${img})`,
         backgroundRepeat: "no-repeat",
-        backgroundPosition: "center center",
-        backgroundSize: "100% 100%",
+        backgroundPosition: "left center",
+        backgroundSize: "80% 80%",
         backgroundAttachment: "fixed",
         display : "flex",
         flexDirection : "row",
