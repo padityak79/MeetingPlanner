@@ -53,38 +53,45 @@ router.post('/addNewMeeting', async (req, res) => {
                                         };
             
                                         sendEmail(transporter,mailOptions);
-
+                                        let em = participant
                                         participant = insertResult.insertId;
                                         sqlQuery = "INSERT INTO usermeets (idMeeting, idUser, title, meetingRoomId, startTime, endTime) VALUES (?,?,?,?,?,?)";
                                         await db.query(sqlQuery, [result.insertId, participant, title, meetingRoomId, startTime, endTime], (error, insertResult) => {
                                             console.log(insertResult);
-
+                                            if(!error){
                                             var mailOption = {
                                                 from: 'meetingplanneriiita@gmail.com',
-                                                to: participant,
+                                                to: em,
                                                 subject: 'Meeting Scheduled',
                                                 text: 'A meeting has been scheduled. Please login for details'
                                             };
                 
-                                            sendEmail(transporter,mailOption);
+                                            sendEmail(transporter,mailOption);}
+                                            else{
+                                                console.log(error)
+                                            }
                                         })
                                     } 
                                 })
                             } else if(!err2) {
+                                let em=participant
                                 participant = searchResult[0].idUser;
                                 console.log(searchResult[0])
                                 sqlQuery = "INSERT INTO usermeets (idMeeting, idUser, title, meetingRoomId, startTime, endTime) VALUES (?,?,?,?,?,?)";
                                 await db.query(sqlQuery, [result.insertId, participant, title, meetingRoomId, startTime, endTime], (error, insertResult) => {
                                     console.log(insertResult);
-
+                                    if(!error){
                                     var mailOption = {
                                         from: 'meetingplanneriiita@gmail.com',
-                                        to: 'sakshamsood00@gmail.com',
+                                        to: em,
                                         subject: 'Meeting Scheduled',
                                         text: 'A meeting has been scheduled. Please login for details.'
                                     };
         
-                                    sendEmail(transporter,mailOption);
+                                    sendEmail(transporter,mailOption);}
+                                    else{
+                                        console.log(error)
+                                    }
                                 })
                             }
                         })
