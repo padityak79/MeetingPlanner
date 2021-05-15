@@ -56,7 +56,7 @@ const useStyles = makeStyles((theme) => ({
         width : "100%",
         marginTop : 50
     }, card: {
-        minWidth : 700,
+        width : "50%",
         padding : 10,
         [theme.breakpoints.down("sm")] : {
             padding : 0,
@@ -94,7 +94,7 @@ const useStyles = makeStyles((theme) => ({
         margin : 3,
         [theme.breakpoints.down("xs")] : {
             fontSize : 8,
-            height : "70px"
+            height : "50px"
         }
     }
 }));

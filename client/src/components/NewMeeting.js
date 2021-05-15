@@ -86,7 +86,24 @@ const useStyles = makeStyles((theme) => ({
   },
   inputContainer : {
       display : "flex",
-      alignItems : "center"
+      alignItems : "center",
+      [theme.breakpoints.down("sm")] : {
+        "&>*" : {
+          fontSize : "10px"
+        }
+      }
+  },
+  timeInput : {
+    [theme.breakpoints.down("sm")] : {
+      marginBottom : "10px"
+    }
+  },
+  select : {
+    [theme.breakpoints.down("sm")] : {
+      display: "flex",
+      height : "30px",
+      alignItems: "center"
+    }
   },
   container : {
       display : "flex",
@@ -101,15 +118,24 @@ const useStyles = makeStyles((theme) => ({
     marginBottom : "20px",
     flexWrap : "wrap",
     alignContent : "flex-start",
-    padding : "10px"
+    padding : "10px",
+    [theme.breakpoints.down("sm")] : {
+      width : "70%",
+      minHeight : "120px"
+    }
   },
   chip : {
     marginRight : "10px",
     marginBottom: "10px",
-    fontSize : "12px"
+    fontSize : "12px",
+    [theme.breakpoints.down("sm")] : {
+      fontSize : "10px",
+      marginRight : "7px",
+      marginBottom : "7px"
+    }
   }, 
   submitButton : {
-    margin : "40px"
+    margin : "40px",
   },
   card : {
     width : 600, 
@@ -258,6 +284,7 @@ const AddNewMeeting = (props) => {
         InputLabelProps={{
           shrink: true
         }}
+        className = {classes.timeInput}
         onChange={(e) => {
           setStartDate(e.target.value);
           setErr({})
@@ -273,6 +300,7 @@ const AddNewMeeting = (props) => {
         InputLabelProps={{
           shrink: true
         }}
+        className = {classes.timeInput}
         onChange = {(e) => {
           setEndDate(e.target.value);
           setErr({})
@@ -280,12 +308,13 @@ const AddNewMeeting = (props) => {
         onBlur={(e) => {
           if(e.target.value < startDate) {
             alert("Invalid Ending Time. Meeting can't end before it starts")
+            setEndDate(`${localDate.toISOString().slice(0,19)}`)
             return;
           }
           setEndDate(e.target.value);
         }}
       />
-      <div>
+      <div className = {classes.select}>
         <InputLabel id="demo-simple-select-label" style = {{fontSize : "12px"}}>Meeting Room</InputLabel>
         <Select
           labelId="demo-simple-select-label"
