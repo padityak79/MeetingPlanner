@@ -28,9 +28,7 @@ router.post('/', (req,res) => {
         db.query(sqlQuery, [Email], (err, result) => {
             if(err) {
                 res.status(400).json({error : err.message})
-            }
-
-            if(result.length === 0) {
+            } else if(result.length === 0) {
                 res.status(200).json({code : 0, error : "Email not registered. Please try again."})
             } else if(Password === result[0].Password) {
                 res.status(200).json({message: "success", user : result[0]});
